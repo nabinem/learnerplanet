@@ -101,9 +101,7 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
-                <div class="text-content">
-                  <h2>Explore Our Popular Courses</h2>
-                </div>
+                <h2>Our Popular Courses</h2>
               </div>
             </div>
             <div class="row pt-5">
@@ -211,20 +209,20 @@
             </div>
             <div class="row pt-5">
               <div class="col-sm-6 mb-4">
-                <h4><span>~</span>Question 1?</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsum eaque? Facilis, est repellendus id at ipsum omnis. Tempora, accusamus?</p>
+                <h4>How can I take the online course?</h4>
+                <p>Firstly, you need to create an account, choose the course you want to take, buy the course by choosing the payment methods. After you have paid for the course, you can start learning easily. There is no fixed time to access the course. You can learn anytime, anywhere on any device.</p>
               </div>
               <div class="col-sm-6 mb-4">
-                <h4><span>~</span>Question 2?</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsum eaque? Facilis, est repellendus id at ipsum omnis. Tempora, accusamus?</p>
+                <h4>Which courses are available?</h4>
+                <p>We have a variety of courses covering different subject matters.</p>
               </div>
               <div class="col-sm-6 mb-4">
-                <h4><span>~</span>Question 3?</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsum eaque? Facilis, est repellendus id at ipsum omnis. Tempora, accusamus?</p>
+                <h4>What is included in the course?</h4>
+                <p>The courses include videos and additional course materials, such as PDF documents, which are free to download.</p>
               </div>
               <div class="col-sm-6 mb-4">
-                <h4><span>~</span>Question 4?</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ipsum eaque? Facilis, est repellendus id at ipsum omnis. Tempora, accusamus?</p>
+                <h4>Are courses Free?</h4>
+                <p>We offer both free courses and paid ones. However, there are always discounts or ongoing offers on our courses. </p>
               </div>
             </div>
           </div>
@@ -238,7 +236,7 @@
             <div class="col-sm-12">
               <div class="text-content text-center pb-4">
                 <h2>Subscribe our newsletter.</h2>
-                <p>Hurry up! Subscribe our newsletter to get notifications about latest deals/offers.</p>
+                <p>Hurry up! Subscribe our newsletter to get notifications about latest deals and offers.</p>
               </div>
               <form class="newsletter">
                 <div class="row">
