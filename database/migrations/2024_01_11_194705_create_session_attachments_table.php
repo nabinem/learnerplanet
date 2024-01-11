@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('session_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('session_id');
+            $table->foreignId('user_id')->index('user_id');
+            $table->foreignId('session_id')->index('session_id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('file');

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('module_id');
+            $table->foreignId('user_id')->index('user_id');
+            $table->foreignId('module_id')->index('module_id');
             $table->string('title', 100);
             $table->string('short_desc')->nullable();
             $table->text('description')->nullable();

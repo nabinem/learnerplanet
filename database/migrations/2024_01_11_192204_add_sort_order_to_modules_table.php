@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('modules', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id');
-            $table->foreignId('course_id')->after('user_id');
-            $table->tinyInteger('sort_order')->after('status');
+            $table->foreignId('user_id')->index('user_id')->after('id');
+            $table->foreignId('course_id')->index('course_id')->after('user_id');
+            $table->tinyInteger('sort_order')->index('sort_order')->after('status');
         });
     }
 
