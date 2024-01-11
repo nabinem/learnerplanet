@@ -347,6 +347,9 @@
 
 
       <script src="{{ asset('vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.validate-additional-methods.min.js') }}"></script>
         
       @stack('pluginScripts')
 
