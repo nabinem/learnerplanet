@@ -25,10 +25,10 @@
                 <a class="nav-link" href="#faq">FAQ</a>
               </li>
               <li>
-                <button class="white-btn small-btn">LOG IN</button>
+                <a class="white-btn small-btn" href="{{ route('login') }}">LOG IN</a>
               </li>
               <li>
-                <button class="main-btn">SIGN UP</button>
+                <a class="main-btn" href="{{ route('register') }}">SIGN UP</a>
               </li>
             </ul>
           </div>

@@ -10,352 +10,315 @@
             LearnerPlanet.com - Leading Learning Platform
         </title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <link href="{{ asset('vendors/fontawesome/css/all.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('plugins/fontawesome/css/all.min.css') }}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset("plugins/OverlayScrollbars/overlayscrollbars.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("plugins/toastr/toastr.min.css") }}">
         
-        <link href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" >
+        <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" >
         
         @stack('pluginCss')
 
-        <link href="{{ asset('css/styles.css') }}?v=1" rel="stylesheet">
+        <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('css/styles-app.css') }}" rel="stylesheet">
 
         @stack('css')
         
     </head>
-    <body>
-      @include('layouts.navigation')
-
-      <!-- Top Banner -->
-      <section id="home">
-        <div class="container-fluid px-0 top-banner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-6">
-                        <h1>Online Learning Platform</h1>
-                        <p>
-                          Join the world’s most powerful online platform for continuous momentum, growth and success.
-                        </p>
-                        <div class="mt-4">
-                            <button class="main-btn">
-                              Register Now
-                              <i class="fas fa-angle-right ps-3"></i>
-                            </button>
-                            <button class="white-btn ms-lg-4 mt-4">Learn More
-                              <i class="fas fa-angle-right ps-3"></i>
-                          </button>
+    <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary">
+      <div class="app-wrapper"> 
+        <!--begin::Header-->
+        <nav class="app-header navbar navbar-expand bg-body"> 
+            <!--begin::Container-->
+            <div class="container-fluid"> 
+                <!--begin::Start Navbar Links-->
+                <ul class="navbar-nav">
+                    <li class="nav-item"> 
+                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"> 
+                            <i class="bi bi-list"></i> 
+                        </a> 
+                    </li>
+                 </ul>
+                <ul class="navbar-nav ms-auto">
+                    <!--begin::Notifications Dropdown Menu-->
+                    <li class="nav-item dropdown"> 
+                        <a class="nav-link" data-bs-toggle="dropdown" href="#"> 
+                            <i class="bi bi-bell-fill"></i> 
+                            <span class="navbar-badge badge text-bg-warning">15</span> 
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> 
+                            <span class="dropdown-item dropdown-header">15 Notifications</span>
+                            <div class="dropdown-divider"></div> 
+                            <a href="#" class="dropdown-item"> 
+                                <i class="bi bi-envelope me-2"></i> 4 new messages
+                                <span class="float-end text-secondary fs-7">3 mins</span> 
+                            </a>
+                            <div class="dropdown-divider"></div> 
+                            <a href="#" class="dropdown-item"> 
+                                <i class="bi bi-people-fill me-2"></i> 8 new courses
+                                <span class="float-end text-secondary fs-7">12 hours</span> 
+                            </a>
+                            <div class="dropdown-divider"></div> 
+                            <a href="#" class="dropdown-item"> 
+                                <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
+                                <span class="float-end text-secondary fs-7">2 days</span> 
+                            </a>
+                            <div class="dropdown-divider"></div> 
+                            <a href="#" class="dropdown-item dropdown-footer">
+                                See All Notifications
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                      <div class="home-top-banner">
-                        <img src="{{ asset('images/home-top-banner.jpg') }}" class="img-fluid">
-                      </div>
-                    </div>
-                </div>
+                    </li> 
+                    <!--end::Notifications Dropdown Menu-->
+                    <!--begin::User Menu Dropdown-->
+                    <li class="nav-item dropdown user-menu"> 
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> 
+                            <i class="bi bi-person-fill"></i>
+                            <span class="d-none d-md-inline">{{ auth()->user()->name }}</span> 
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> 
+                            <li class="user-header text-bg-primary">
+                                <p>
+                                    {{ auth()->user()->name }}
+                                    <small>
+                                        Member since {{ auth()->user()->created_at->isoFormat('MMMM. YYYY') }}
+                                    </small>
+                                </p>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="bi bi-gear-fill"></i>  Settings
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="bi bi-credit-card-2-back"></i>  Pricings
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="nav-icon bi bi-question-circle-fill"></i>  Help Documents
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="bi bi-person-circle"></i> Support
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="bi bi-pencil-fill"></i> Change Password
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col"> 
+                                        <a href="#">
+                                            <i class="bi bi-pencil-square"></i> Edit Profile
+                                        </a> 
+                                    </div>
+                                </div>
+                            </li>
+                            <!--begin::Menu Footer-->
+                            <li class="user-footer text-center">
+                                <a href="#" class="btn btn-default btn-flat float-end">
+                                    Sign out
+                                </a> 
+                            </li> 
+                            <!--end::Menu Footer-->
+                        </ul>
+                    </li> <!--end::User Menu Dropdown-->
+                </ul> <!--end::End Navbar Links-->
+            </div> <!--end::Container-->
+        </nav> <!--end::Header--> 
+        <!--begin::Sidebar-->
+        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark"> <!--begin::Sidebar Brand-->
+            <div class="sidebar-brand"> 
+              <a href="{{ url('dashboard') }}" class="brand-link"> 
+                <img src="{{ asset("images/logo-icon-white.png") }}" alt="Logo" class="brand-image opacity-75 shadow">
+                <span class="brand-text fw-light">Learner Planet</span>
+              </a>
             </div>
-        </div>
-      </section>
+            <!--begin::Sidebar Wrapper-->
+            <div class="sidebar-wrapper">
+                <nav class="mt-2"> <!--begin::Sidebar Menu-->
+                    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item"> 
+                            <a href="{{ url('dashboard') }}" 
+                                @class([
+                                    'nav-link',
+                                    'active' => request()->routeIs('dashboard')
+                                ])
+                            > 
+                                <i class="nav-icon bi bi-house-door-fill"></i>
+                                <p> Home </p>
+                            </a>
+                        </li>
+                        <li @class([
+                            'nav-item',
+                            'menu-open' => request()->routeIs([
+                                'courses.index',
+                                'courses.create'
+                            ])
+                        ])>
+                            <a href="#" class="nav-link"> 
+                                <i class="nav-icon bi bi-ui-checks-grid"></i>
+                                <p>
+                                    Create & Launch
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-speedometer"></i>
+                                        <p> Dashboard</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="{{ route('courses.index') }}" 
+                                        @class([
+                                            'nav-link',
+                                            'active' => request()->routeIs('courses.index')
+                                        ])
+                                    > 
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p> My Created Courses</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="{{ route('courses.create') }}" 
+                                        @class([
+                                            'nav-link',
+                                            'active' => request()->routeIs('courses.create')
+                                        ])
+                                    > 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> Create A New Course </p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-circle"></i>
+                                        <p> My Purchased Courses</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> Opt in Pages</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> Upsell Pages</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> Confirmation Pages</p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> Public Directory </p>
+                                    </a> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="#" class="nav-link"> 
+                                        <i class="nav-icon bi bi-plus-circle"></i>
+                                        <p> My Directory </p>
+                                    </a> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div> 
+            <!--end::Sidebar Wrapper-->
+        </aside> 
+        <!--end::Sidebar--> 
+        <!--begin::App Main-->
+        <main class="app-main"> 
+            {{ $slot }}
+        </main> 
+        <!--end::App Main--> 
+        <!--begin::Footer-->
+        <footer class="app-footer"> 
+            <div class="float-end d-none d-sm-inline">
+                <strong> Copyright &copy; {{ date('Y') }} &nbsp;
+                    <a href="{{ url('/') }}" class="text-decoration-none">
+                        {{ config('app.name') }}.
+                    </a>
+                </strong>
+                All rights reserved.
+            </div>
+        </footer> 
+        <!--end::Footer-->
+    </div>
+      
 
-      <!--Section 2: Counter-->
-      <section id="counter">
-        <section class="counter-section">
-          <div class="container">
-            <div class="row text-center">
-              <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                <h2>
-                  <span id="count1"></span>+
-                </h2>
-                <p>On Demand
-                  Courses & Trainings</p>
-              </div>
-              <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                <h2>
-                  <span id="count2"></span>+
-                </h2>
-                <p>Hours of
-                  Knowledge</p>
-              </div>
-              <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                <h2>
-                  <span id="count3"></span>+
-                </h2>
-                <p>Live Monthly
-                  Training Events</p>
-              </div>
-              <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
-                <h2>
-                  <span id="count4"></span>+
-                </h2>
-                <p>Active Learners</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
-
-       <!--Section 5: Explore Foods-->
-       <section id="explore-course">
-        <div class="explore-course wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>Our Popular Courses</h2>
-              </div>
-            </div>
-            <div class="row pt-5">
-              <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
-                <div class="card">
-                  <img src="{{ asset('images/top-course1.jpg') }}" class="img-fluid top-course-image">
-                  <div class="pt-3">
-                    <h4>Become A Better Photographer</h4>
-                    <p>By <b>John Doe</b></p>
-                    <span>$10.50 <del>$11.70</del></span>
-                    <button class="mt-4 main-btn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
-                <div class="card">
-                  <img src="{{ asset('images/top-course2.jpg') }}" class="img-fluid top-course-image">
-                  <div class="pt-3">
-                    <h4>Business Communication Skills</h4>
-                    <p>By <b>Harry</b></p>
-                    <span>$10.50 <del>$11.70</del></span>
-                    <button class="mt-4 main-btn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
-                <div class="card">
-                  <img src="{{ asset('images/top-course3.png') }}" class="img-fluid top-course-image">
-                  <div class="pt-3">
-                    <h4>Entrepreneurial Skills</h4>
-                    <p>By  <b>Robert</b></p>
-                    <span>$10.50 <del>$11.70</del></span>
-                    <button class="mt-4 main-btn">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--Section 6: Testominial-->
-      <section id="testomonials">
-        <div class="wrapper testimonial-section">
-          <div class="container text-center">
-            <div class="text-center pb-4">
-              <h2>Testimonial</h2>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 col-lg-10 offset-lg-1">
-                <div id="carouselExampleDark" class="carousel slide">
-                  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
-                      <div class="carousel-caption">
-                        <img src="{{ asset('images/testimonial-male.jpeg') }}">
-                        <p>Excellent up to date Courses</p>
-                        <h5>John Doe</h5>
-                      </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                      <div class="carousel-caption">
-                        <img src="{{ asset('images/testimonial-female.jpeg') }}">
-                        <p>Good Courses</p>
-                        <h5>Marry Jane</h5>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="carousel-caption">
-                        <img src="{{ asset('images/testimonial-male.jpeg') }}">
-                        <p>On demand Courses</p>
-                        <h5>Brandon Murphy</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--Section 7: Faq-->
-      <section id="faq">
-        <section class="faq wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="text-center pb-4">
-                  <h2>Frequently Asked Questions</h2>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-5">
-              <div class="col-sm-6 mb-4">
-                <h4>How can I take the online course?</h4>
-                <p>Firstly, you need to create an account, choose the course you want to take, buy the course by choosing the payment methods. After you have paid for the course, you can start learning easily. There is no fixed time to access the course. You can learn anytime, anywhere on any device.</p>
-              </div>
-              <div class="col-sm-6 mb-4">
-                <h4>Which courses are available?</h4>
-                <p>We have a variety of courses covering different subject matters.</p>
-              </div>
-              <div class="col-sm-6 mb-4">
-                <h4>What is included in the course?</h4>
-                <p>The courses include videos and additional course materials, such as PDF documents, which are free to download.</p>
-              </div>
-              <div class="col-sm-6 mb-4">
-                <h4>Are courses Free?</h4>
-                <p>We offer both free courses and paid ones. However, there are always discounts or ongoing offers on our courses. </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
-
-       <!--Section 9: Newsletter-->
-       <section id="newsletter">
-        <div class="container wrapper">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="text-content text-center pb-4">
-                <h2>Subscribe our newsletter.</h2>
-                <p>Hurry up! Subscribe our newsletter to get notifications about latest deals and offers.</p>
-              </div>
-              <form class="newsletter">
-                <div class="row">
-                  <div class="col-md-8 col-12">
-                    <input class="form-control" placeholder="Email Address here" name="email" type="email">
-                  </div>
-                  <div class="col-md-4 col-12">
-                    <button class="main-btn" type="submit">Subscribe</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================
-        Contact Section Start
-    ============================ -->
-    <section id="contact">
-      <div class="contact ptb_100">
-          <div class="container">
-              <div class="mb-5 text-center">
-                  <h2 class="fw-bold">Contact Us</h2>
-              </div>
-          </div>
-          <div class="mobile_px_20">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-lg-5 col-md-5">
-                          <h4 class="fw-bold">Contact Info</h4>
-                          <ul class="info list-unstyled">
-                              <li class="d-flex align-items-center">
-                                  <p>
-                                    9330 Baseline Road, Suite 103 <br/>
-                                    Rancho Cucamonga, CA 91707
-                                  </p>
-                              </li>
-                              <li class="d-flex align-items-center">
-                                  <i class="fa fa-phone fs-6 me-2"></i>
-                                  <p><a href="tel:+1 (620) 227-3311">+1 (620) 227-3311</a></p>
-                              </li>
-                              <li class="d-flex align-items-center">
-                                  <i class="fa fa-envelope fs-6 me-2"></i>
-                                  <p><a href="mailto:info@learnerplanet.com">info@learnerplanet.com</a></p>
-                              </li>
-                          </ul>
-                      </div>
-                      <div class="col-lg-7 col-md-7 pt-lg-0 pt-md-0 pt-4">
-                          <form>
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <div class="form-group">
-                                          <input type="text" class="form-control" placeholder="Your Name"/>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                      <div class="form-group">
-                                          <input type="email" class="form-control" placeholder="Email Address"/>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-12">
-                                      <div class="form-group">
-                                          <textarea class="textarea" cols="30" rows="4" placeholder="Enter Your Message"></textarea>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-12">
-                                      <button class="main-btn"><span class="ti-rocket pe-2 fs-5"></span>Send Message</button>
-                                  </div>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-      <!--Section 10: Footer-->
-      <footer id="footer">
-        <div class="footer py-5">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <a href="#" class="footer-link">FAQ</a>
-                <a href="#" class="footer-link">Privacy Statement</a>
-                <a href="#" class="footer-link">Terms and Service</a>
-                <a href="#" class="footer-link">Contact Us</a>
-                <div class="footer-social pt-4 text-center">
-                  <a href=""><i class="fab"></i></a>
-                  <a href=""><i class="fab fa-facebook-f"></i></a>
-                  <a href=""><i class="fab fa-twitter"></i></a>
-                  <a href=""><i class="fab fa-youtube"></i></a>
-                  <a href=""><i class="fab fa-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="footer-copy">
-                  <div class="copy-right text-center pt-5">
-                    <p class="text-light">&copy; {{ date('Y') }}, {{ config('app.name') }}. All rights reserved.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-
-      <script src="{{ asset('vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
       <script src="{{ asset('js/jquery.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.validate-additional-methods.min.js') }}"></script>
-        
+      <script src="{{ asset("plugins/OverlayScrollbars/overlayscrollbars.browser.es6.min.js") }}"></script> 
+      <script src="{{ asset('js/common-libs.min.js') }}"></script>
       @stack('pluginScripts')
+      
+      <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
-      <script src="{{ asset('js/main.js') }}"></script>
+      <script src="{{ asset('js/main-app.js') }}"></script>
 
       @stack('scripts')
+
+      <script>
+        const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
+        const Default = {
+            scrollbarTheme: "os-theme-light",
+            scrollbarAutoHide: "leave",
+            scrollbarClickScroll: true,
+        };
+        document.addEventListener("DOMContentLoaded", function() {
+            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+            if (
+                sidebarWrapper &&
+                typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+            ) {
+                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                    scrollbars: {
+                        theme: Default.scrollbarTheme,
+                        autoHide: Default.scrollbarAutoHide,
+                        clickScroll: Default.scrollbarClickScroll,
+                    },
+                });
+            }
+        });
+      </script>
+
     </body>
 </html>
 

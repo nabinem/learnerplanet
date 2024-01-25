@@ -1,0 +1,28 @@
+.sidebar-brand{
+    padding-left: 1.5rem;
+    justify-content: flex-start;
+}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    min-height: auto;
+}
+.navbar-nav>.user-menu>.dropdown-menu{
+    width: 200px;
+    min-width: 200px;
+}
+.navbar-nav>.user-menu>.dropdown-menu>.user-body{
+    border-top: none;
+    padding: 10px 16px;
+    font-size: 16px;
+}
+.navbar-nav>.user-menu>.dropdown-menu>.user-body i{
+    margin-right: 2px;
+    font-size: 14px;
+}
+.form-error, .error{color: rgb(220,53,69) !important;}
+.form-label .bi{font-size: 14px !important;}
+.form-label .help-text{
+    font-size: .875em; 
+    color: rgba(33, 37, 41, 0.75);
+    margin-left: 10px;
+}
+.initial-hide{display: none;}
