@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item">
-                            <a href="#">Create & Launch</a>
+                            <a href="{{ route('courses.index') }}">Create & Launch</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="{{ route('courses.index') }}">My Created Courses</a>
@@ -30,6 +30,7 @@
                             Form::model($course, [
                                 'class' => 'form-horizontal',
                                 'id' => 'courseForm',
+                                'files' => true,
                                 'autocomplete' => 'off',
                                 'method' => $course->exists ? 'put' : 'post',
                                 'route' => $course->exists ? ['courses.update', $course->id] : ['courses.store'] 
@@ -42,7 +43,14 @@
                                     </label> 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="text" name="title" class="form-control" maxlength="100" id="courseTitle" required/>
+                                            {!! Form::text('title', null, [
+                                                'class' => 'form-control',
+                                                'maxlength' => 100,
+                                                'required' => true
+                                            ]) !!}
+                                            @error('title')
+                                                <span class="form-text form-error">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +62,12 @@
                                     </label> 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="short_desc" class="form-control"></textarea>
+                                            {!! 
+                                                Form::textarea('short_desc', null, [
+                                                    'class' => 'form-control',
+                                                    'rows' => 2
+                                                ]) 
+                                            !!}
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +79,13 @@
                                     </label> 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="description" class="form-control" rows="5" required></textarea>
+                                            {!! 
+                                                Form::textarea('description', null, [
+                                                    'class' => 'form-control',
+                                                    'rows' => 5,
+                                                    'required' => true
+                                                ]) 
+                                            !!}
                                         </div>
                                     </div>
                                 </div>
@@ -78,14 +97,20 @@
                                     </label> 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <textarea name="disclosure" class="form-control"></textarea>
+                                            {!! 
+                                                Form::textarea('disclosure', null, [
+                                                    'class' => 'form-control',
+                                                    'rows' => 2
+                                                ]) 
+                                            !!}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            Media Section
+                                            <i class="bi bi-play-circle-fill"></i> 
+                                            <b>Media Section</b>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -97,7 +122,15 @@
                                             </label> 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="file" name="thumbnail" class="form-control" id="thumbnail">
+                                                    <input 
+                                                        type="file" 
+                                                        name="thumbnail" 
+                                                        class="form-control"
+                                                        accept="image/*"
+                                                    />
+                                                    @error('thumbnail')
+                                                        <span class="form-text form-error">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -138,11 +171,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeLocalInputBox">
-                                                    <input type="file" name="trailer" class="form-control" />
-                                                    <div class="form-text">Maximum file size allowed 1GB</div>
+                                                    <input 
+                                                        type="file" 
+                                                        name="trailer" 
+                                                        class="form-control"
+                                                    />
+                                                    @error('trailer')
+                                                        <span class="form-text form-error">{{ $message }}</span>
+                                                    @enderror
+                                                    <div class="form-text">Maximum file size allowed 1GB, For larger files use Vimeo/Youtube.</div>
                                                 </div>
                                                 <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeExtInputBox">
-                                                    <input type="text" name="trailer" class="form-control" />
+                                                    {!! Form::text('trailer_ext_link', null, [
+                                                        'class' => 'form-control',
+                                                    ]) !!}
+                                                    @error('trailer_ext_link')
+                                                        <span class="form-text form-error">{{ $message }}</span>
+                                                    @enderror
                                                     <div class="form-text">Youtube/Vimeo link starting with https://</div>
                                                 </div>
                                             </div>
@@ -155,7 +200,15 @@
                                             </label> 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="file" name="trailer_cover" class="form-control">
+                                                    <input 
+                                                        type="file" 
+                                                        name="trailer_cover" 
+                                                        class="form-control"
+                                                        accept="image/*"
+                                                    />
+                                                    @error('trailer_cover')
+                                                        <span class="form-text form-error">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +217,8 @@
                                 <div class="card mt-3">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            Pricing Options
+                                            <i class="bi bi-credit-card"></i> 
+                                            <b> Pricing Options </b>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -173,7 +227,8 @@
                                 <div class="card mt-3">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            Directory Options
+                                            <i class="bi bi-columns-gap"></i> 
+                                            <b>Directory Options</b>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -196,10 +251,33 @@
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#courseForm').validate({
+                $('#courseFormeee').validate({
                     rules: {
-                        //title: {required: true},
+                        thumbnail: {
+                            accept: "image/*",
+                            filesize: 1000 //1MB
+                        },
+                        trailer: {
+                            accept: "video/*",
+                            filesize: (1000*1000) //1GB
+                        },
+                        trailer_ext_link: {
+                            url: true
+                        }
                     },
+                    messages: {
+                        thumbnail: {
+                            accept: 'Please upload image of type jpg/png/gif',
+                            filesize: 'Maximum allowed size: 1MB',
+                        },
+                        trailer: {
+                            accept: 'Please upload valid video'
+                        },
+                        trailer_cover: {
+                            accept: 'Please upload valid image',
+                            filesize: 'Maximum allowed size: !MB',
+                        }
+			        },
                     submitHandler: function (form){
                         form.submit();
                         $(form).find("[type='submit']").button('loading');

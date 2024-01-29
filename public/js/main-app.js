@@ -49,8 +49,9 @@ $(document).ready(function () {
         return this.optional(element) || (year > 1600 && year <= (new Date()).getFullYear());
     }, "Invalid year");
 
+    //filesize in KB??
     $.validator.addMethod('filesize', function (value, element, param) {
-        return this.optional(element) || (element.files[0].size <= param);
+        return this.optional(element) || (element.files[0].size/1024 <= param);
     }, 'File size exceeds maximum allowed limit.');
 
     $.validator.addMethod('generalPhone', function (value, element, param) {

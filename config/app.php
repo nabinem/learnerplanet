@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'validVideoTypes' => [
+        'avi', 'mpeg', 'flv', 'quicktime', 'video/mp4', 'mov', 'wmv', 'mkv'
+    ]
+
 ];

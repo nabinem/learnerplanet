@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveCourseRequest;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
@@ -20,9 +22,9 @@ class CourseController extends Controller
         return view('courses.create', ['course' => $course]);
     }
 
-    public function store(Request $request)
+    public function store(SaveCourseRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     public function show(string $id)
@@ -35,7 +37,7 @@ class CourseController extends Controller
         //
     }
 
-    public function update(Request $request, string $id)
+    public function update(SaveCourseRequest $request, string $id)
     {
         //
     }
