@@ -184,9 +184,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
-    'validVideoTypes' => [
-        'avi', 'mpeg', 'flv', 'quicktime', 'video/mp4', 'mov', 'wmv', 'mkv'
-    ]
-
+    
+    'validVideoMimes' => 'video/mp4,video/quicktime,video/avi,video/mov,video/ogg,video/flv,video/x-flv,video/mpeg,video/x-msvideo,video/x-msvideo,video/x-ms-wmv,application/x-mpegURL',
+    'videoMaxSize' => '1000000'//1GB
+ 
 ];

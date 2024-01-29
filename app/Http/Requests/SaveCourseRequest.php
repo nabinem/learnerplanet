@@ -28,17 +28,10 @@ class SaveCourseRequest extends FormRequest
             'thumbnail' => ['nullable', File::image()->max('1mb')],
             'trailer' => [
                 'nullable',
-                //'mimes:mp4',
-                'mimetypes:video/mp4,video/quicktime,video/avi,video/mov,video/ogg,video/flv,video/x-flv,video/mpeg,video/x-msvideo,application/octet-stream,video/x-msvideo,video/x-ms-wmv,application/x-mpegURL',
+                'mimetypes:'.config('app.validVideoMimes'),
+                'max:'.config('app.videoMaxSize')
             ],
             'trailer_cover' => ['nullable', File::image()->max('1mb')],
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'trailer.mimetypes' => 'Invalid Video File'
         ];
     }
 
