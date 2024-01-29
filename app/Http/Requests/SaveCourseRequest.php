@@ -29,7 +29,7 @@ class SaveCourseRequest extends FormRequest
             'trailer' => [
                 'nullable',
                 'mimetypes:'.config('app.validVideoMimes'),
-                'max:'.config('app.videoMaxSize')
+                'max:'.config('app.videoMaxUploadSize')
             ],
             'trailer_cover' => ['nullable', File::image()->max('1mb')],
         ];

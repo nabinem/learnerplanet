@@ -186,6 +186,6 @@ return [
     ])->toArray(),
     
     'validVideoMimes' => 'video/mp4,video/quicktime,video/avi,video/mov,video/ogg,video/flv,video/x-flv,video/mpeg,video/x-msvideo,video/x-msvideo,video/x-ms-wmv,application/x-mpegURL',
-    'videoMaxSize' => '1000000'//1GB
+    'videoMaxUploadSize' => '1000000'//1GB
  
 ];
