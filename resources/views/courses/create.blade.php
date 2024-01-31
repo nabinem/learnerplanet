@@ -26,6 +26,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-primary card-outline mb-4">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         {!! 
                             Form::model($course, [
                                 'class' => 'form-horizontal',
@@ -142,30 +151,26 @@
                                             <div class="row">
                                                 <div class="col-sm-12 d-sm-flex mb-3">
                                                     <div class="form-check"> 
-                                                        <input 
-                                                            class="form-check-input trailer-video-type show-hide-trigger" 
-                                                            type="radio" 
-                                                            name="trailer_video_type"
-                                                            value="local" 
-                                                            id="trailerVideoTypeLocal"
-                                                            data-hide-target=".tlVidTypeInputBox"
-                                                            data-show-target="#tlVidTypeLocalInputBox"
-                                                        > 
-                                                        <label class="form-check-label" for="trailerVideoTypeLocal">
+                                                        {!!
+                                                            Form::radio('trailer_storage_type', 'local', null, [
+                                                                "class" => "form-check-input trailer-video-type show-hide-trigger",
+                                                                "data-hide-target" => ".tlVidTypeInputBox",
+                                                                "data-show-target" => "#tlVidTypeLocalInputBox"
+                                                            ]);
+                                                        !!}
+                                                        <label class="form-check-label" for="trailerStorageTypeLocal">
                                                             Upload Your Own
-                                                        </label> 
+                                                        </label>
                                                     </div>
                                                     <div class="form-check ms-sm-3"> 
-                                                        <input 
-                                                            class="form-check-input trailer-video-type show-hide-trigger" 
-                                                            type="radio" 
-                                                            name="trailer_video_type" 
-                                                            value="external" 
-                                                            id="trailerVideoTypeExternal"
-                                                            data-hide-target=".tlVidTypeInputBox"
-                                                            data-show-target="#tlVidTypeExtInputBox"
-                                                        > 
-                                                        <label class="form-check-label" for="trailerVideoTypeExternal">
+                                                        {!!
+                                                            Form::radio('trailer_storage_type', 'external_web', null, [
+                                                                "class" => "form-check-input trailer-video-type show-hide-trigger",
+                                                                "data-hide-target" => ".tlVidTypeInputBox",
+                                                                "data-show-target" => "#tlVidTypeExtInputBox"
+                                                            ]);
+                                                        !!}
+                                                        <label class="form-check-label" for="trailerStorageTypeExternal">
                                                             Link to Vimeo/Youtube Video
                                                         </label> 
                                                     </div>
@@ -236,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="card-footer"> 
-                                <button type="submit" class="btn btn-lg btn-primary">
+                                <button type="submit" class="btn btn-lg btn-primary" data-loading-text="Saving..">
                                     <i class="bi bi-floppy"></i>
                                     Save
                                 </button> 
@@ -251,7 +256,7 @@
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#courseFormeee').validate({
+                $('#courseForm').validate({
                     rules: {
                         thumbnail: {
                             accept: "image/*",
