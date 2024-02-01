@@ -1,31 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!--<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />-->
-
-        <title>
-            LearnerPlanet.com - Leading Learning Platform
-        </title>
-
-        <link href="{{ asset('plugins/fontawesome/css/all.min.css') }}" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous">
+        @include('partials.head')
         <link rel="stylesheet" href="{{ asset("plugins/OverlayScrollbars/overlayscrollbars.min.css") }}">
-        <link rel="stylesheet" href="{{ asset("plugins/toastr/toastr.min.css") }}">
-        
-        <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" >
-        
         @stack('pluginCss')
-
-        <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-
         <link href="{{ asset('css/styles-app.css') }}" rel="stylesheet">
-
         @stack('css')
-        
     </head>
     <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary">
       <div class="app-wrapper"> 
@@ -143,9 +123,15 @@
                             </li>
                             <!--begin::Menu Footer-->
                             <li class="user-footer text-center">
-                                <a href="#" class="btn btn-default btn-flat float-end">
-                                    Sign out
-                                </a> 
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button 
+                                        type="submit"
+                                        class="btn btn-default btn-flat float-end cursor-pointer btn-focus-border-none"
+                                    >
+                                        Sign out
+                                    </button>
+                                </form>
                             </li> 
                             <!--end::Menu Footer-->
                         </ul>
@@ -265,6 +251,8 @@
         <!--end::Sidebar--> 
         <!--begin::App Main-->
         <main class="app-main"> 
+            @include('partials.alert')
+            
             {{ $slot }}
         </main> 
         <!--end::App Main--> 
@@ -281,43 +269,35 @@
         </footer> 
         <!--end::Footer-->
     </div>
-      
+        @include('partials.footer')
+        @stack('pluginScripts')
 
-      <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.min.js') }}"></script>
-      <script src="{{ asset("plugins/OverlayScrollbars/overlayscrollbars.browser.es6.min.js") }}"></script> 
-      <script src="{{ asset('js/common-libs.min.js') }}"></script>
-      @stack('pluginScripts')
-      
-      <script src="{{ asset('js/adminlte.min.js') }}"></script>
+        <script src="{{ asset('js/main-app.js') }}"></script>
+        @stack('scripts')
 
-      <script src="{{ asset('js/main-app.js') }}"></script>
-
-      @stack('scripts')
-
-      <script>
-        const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
-        const Default = {
-            scrollbarTheme: "os-theme-light",
-            scrollbarAutoHide: "leave",
-            scrollbarClickScroll: true,
-        };
-        document.addEventListener("DOMContentLoaded", function() {
-            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-            if (
-                sidebarWrapper &&
-                typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
-            ) {
-                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                    scrollbars: {
-                        theme: Default.scrollbarTheme,
-                        autoHide: Default.scrollbarAutoHide,
-                        clickScroll: Default.scrollbarClickScroll,
-                    },
-                });
-            }
-        });
-      </script>
+        <script>
+            const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
+            const Default = {
+                scrollbarTheme: "os-theme-light",
+                scrollbarAutoHide: "leave",
+                scrollbarClickScroll: true,
+            };
+            document.addEventListener("DOMContentLoaded", function() {
+                const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+                if (
+                    sidebarWrapper &&
+                    typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+                ) {
+                    OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                        scrollbars: {
+                            theme: Default.scrollbarTheme,
+                            autoHide: Default.scrollbarAutoHide,
+                            clickScroll: Default.scrollbarClickScroll,
+                        },
+                    });
+                }
+            });
+        </script>
 
     </body>
 </html>

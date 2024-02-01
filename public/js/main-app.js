@@ -35,6 +35,10 @@ $(document).ready(function () {
                     )
                 ) {
                     $($(element).attr("data-group-error-ele")).html(error);
+                } else if (element.closest('.input-group').length){
+                    error.insertAfter(element.closest('.input-group'));
+                } else if (element.attr("type") == "checkbox"){
+                    $(element).closest('.checkbox-container').append(error);
                 } else {
                     error.insertAfter(element);
                 }
