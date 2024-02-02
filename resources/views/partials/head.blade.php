@@ -4,7 +4,7 @@
 <!--<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />-->
 
 <title>
-    {{ ucfirst(config('app.url')) }} - {{ $pageTitle ?? 'Leading Learning Platform' }}
+    {{ ucfirst(config('app.name')) }} - {{ $pageTitle ?? 'Leading Learning Platform' }}
 </title>
 
 <link href="{{ asset('plugins/fontawesome/css/all.min.css') }}" rel="stylesheet"/>

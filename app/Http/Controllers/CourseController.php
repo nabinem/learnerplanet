@@ -11,9 +11,15 @@ use App\Libs\FileUploadHandler;
 class CourseController extends Controller
 {
 	
-	public function index()
+	public function index(Request $request)
 	{
-		return view('courses.index');
+		$courses = Course::where('user_id', $request->user()->id)
+			->orderBy('created_at', 'desc')
+			->get();
+
+		return view('courses.index', [
+			'courses' => $courses
+		]);
 	}
 	
 	public function create()
