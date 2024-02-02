@@ -64,6 +64,30 @@
                                     </div>
                                 </div>
                                 <div class="mb-3"> 
+                                    <label for="courseCategory" class="form-label">
+                                        Category of your Program/Course
+                                        <i class="bi bi-question-circle" data-bs-toggle="tooltip"
+                                            title="What category best fits your program/course"
+                                        ></i>
+                                    </label> 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {!! 
+                                                Form::select('category_id',
+                                                    ['' => '-- Select Any --'] + $categories, 
+                                                    null,
+                                                    [
+                                                        'class' => 'form-select'
+                                                    ]
+                                                );
+                                            !!}
+                                            @error('category_id')
+                                                <span class="form-text form-error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3"> 
                                     <label class="form-label">
                                         Short Description 
                                         <i class="bi bi-question-circle" data-bs-toggle="tooltip" 

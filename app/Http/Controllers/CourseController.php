@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use Exception;
 use App\Libs\FileUploadHandler;
+use App\Models\Category;
 
 class CourseController extends Controller
 {
@@ -15,10 +16,11 @@ class CourseController extends Controller
 	{
 		$courses = Course::where('user_id', $request->user()->id)
 			->orderBy('created_at', 'desc')
+			->with('category')
 			->get();
 
 		return view('courses.index', [
-			'courses' => $courses
+			'courses' => $courses,
 		]);
 	}
 	
@@ -26,7 +28,10 @@ class CourseController extends Controller
 	{
 		$course = new Course;
 
-		return view('courses.create', ['course' => $course]);
+		return view('courses.create', [
+			'course' => $course,
+			'categories' => Category::getIdNameList()
+		]);
 	}
 
 	public function store(SaveCourseRequest $request)
@@ -47,7 +52,7 @@ class CourseController extends Controller
 
 	public function edit(string $id)
 	{
-		//
+		
 	}
 
 	public function update(SaveCourseRequest $request, string $id)

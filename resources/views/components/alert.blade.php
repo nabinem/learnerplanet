@@ -14,7 +14,7 @@
 @endphp
 
 <div 
-    class="alert alert-{{ $alertClass }} alert-dismissible fade show flash-alert mx-2 mt-2" 
+    class="callout callout-{{ $alertClass }} alert alert-{{ $alertClass }} alert-dismissible fade show flash-alert mx-2 mt-2" 
     role="alert"
 >
     <div class="d-flex align-items-center">

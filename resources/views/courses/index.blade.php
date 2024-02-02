@@ -51,7 +51,59 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>No Courses found!</p>
+                            @forelse ($courses as $course)
+                                <div class="card mb-4 shadow-none">
+                                    <div class="row g-0">
+                                        <div 
+                                            class="col-md-2" 
+                                            style=" background: url('{{ asset($course->thumbnail ?: 'images/placeholder-img.jpeg')}}') no-repeat center / cover"
+                                        > 
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="card-body py-2">
+                                                <div class="mb-2">
+                                                    <a 
+                                                        href="#" 
+                                                        data-bs-toggle="tooltip"
+                                                        title="Click to Update"
+                                                        class="btn btn-{{ $course->status == 'live' ? 'success' : 'secondary' }} btn-sm me-2">
+                                                        <i class="bi bi-{{ $course->status == 'live' ? 'broadcast' : 'file-earmark' }}"></i>
+                                                        {{ ucfirst($course->status) }}
+                                                    </a>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                                        Modules <span class="badge bg-secondary">4</span>
+                                                    </a>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                                        Sessions <span class="badge bg-secondary">5</span>
+                                                    </a>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                                        <i class="bi bi-people-fill"></i>
+                                                        Active Members <span class="badge bg-secondary">100</span>
+                                                    </a>
+                                                    <hr class="my-2 mx--1"/>
+                                                </div>
+                                                <p>
+                                                    <b>{{ $course->title }}</b>
+                                                </p>
+                                                <p class="card-text">
+                                                    {{ $course->short_desc }}
+                                                </p>
+                                                <hr class="my-2 mx--1"/>
+                                                <div>
+                                                    <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-outline-primary btn-sm me-2">
+                                                        <i class="bi bi-pencil-fill"></i> Edit
+                                                    </a>
+                                                    <a href="#" class="btn btn-outline-danger btn-sm me-2">
+                                                        <i class="bi bi-trash-fill"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p>No Courses found!</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
