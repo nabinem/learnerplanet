@@ -12,7 +12,12 @@ class SaveCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $course = $this->route('course');
+
+        //create
+        if (empty($course)) return true;
+
+        return $course->canUserAccess();
     }
 
     /**

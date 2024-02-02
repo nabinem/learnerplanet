@@ -28,7 +28,7 @@ class CourseController extends Controller
 	{
 		$course = new Course;
 
-		return view('courses.create', [
+		return view('courses.add_edit_form', [
 			'course' => $course,
 			'categories' => Category::getIdNameList()
 		]);
@@ -45,19 +45,30 @@ class CourseController extends Controller
 		return redirect()->route('courses.index')->with('success', 'Course created successfully');
 	}
 
-	public function show(string $id)
+	public function show(Course $course)
 	{
-		//
+		return view('courses.show', [
+			'course' => $course,
+		]);
+	} 
+
+	public function edit(Course $course)
+	{
+		return view('courses.add_edit_form', [
+			'course' => $course,
+			'categories' => Category::getIdNameList()
+		]);
 	}
 
-	public function edit(string $id)
+	public function update(SaveCourseRequest $request, Course $course)
 	{
-		
-	}
+		try {
+			$this->uploadSave($request, $course);
+		} catch (Exception $ex) {
+			return redirect()->back()->with('error', $ex->getMessage());
+		}
 
-	public function update(SaveCourseRequest $request, string $id)
-	{
-		//
+		return redirect()->route('courses.index')->with('success', 'Course updated successfully');
 	}
 
 	public function uploadSave($request, $course = null)
