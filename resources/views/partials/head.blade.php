@@ -13,4 +13,5 @@
 
 <link rel="stylesheet" href="{{ asset("plugins/toastr/toastr.min.css") }}">
 <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" >
-<link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('plugins/video-js/video-js.min.css') }}" rel="stylesheet" />

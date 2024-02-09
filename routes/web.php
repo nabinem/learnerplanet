@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('courses', 'CourseController');
+    Route::post('courses/delete-media/{course}/{mediaField}', 'CourseController@deleteMedia')
+        ->name('courses.delete-media');
 
     Route::get('/dashboard', function () {
         return view('dashboard');

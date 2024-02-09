@@ -147,97 +147,148 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="mb-3"> 
-                                            <label class="form-label">
-                                                Course Thumbnail Image
-                                                <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Upload image of less than 1MB"></i>
-                                                <span class="help-text">Maximum file size allowed 1MB</span>
-                                            </label> 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input 
-                                                        type="file" 
-                                                        name="thumbnail" 
-                                                        class="form-control"
-                                                        accept="image/*"
-                                                    />
-                                                    @error('thumbnail')
-                                                        <span class="form-text form-error">{{ $message }}</span>
-                                                    @enderror
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <label class="form-label">
+                                                    <b>Course Thumbnail Image</b>
+                                                    <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Upload image of less than 1MB"></i>
+                                                    <span class="help-text">Maximum file size allowed 1MB</span>
+                                                </label> 
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <input 
+                                                            type="file" 
+                                                            name="thumbnail" 
+                                                            class="form-control"
+                                                            accept="image/*"
+                                                        />
+                                                        @error('thumbnail')
+                                                            <span class="form-text form-error">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    @if (!empty($course->thumbnail))
+                                                        <div class="col-md-12 mt-3 media-container">
+                                                            <img 
+                                                                src="{{ asset($course->thumbnail) }}" 
+                                                                width="150"
+                                                            />
+                                                            <button 
+                                                                type="button"
+                                                                class="btn btn-sm delete-media-btn btn btn-outline-danger"
+                                                                data-bs-toggle="tooltip" title="Delete image."
+                                                                data-post-url="{{ route('courses.delete-media', [
+                                                                    'course' => $course->id,
+                                                                    'mediaField' => 'thumbnail'
+                                                                ]) }}"
+                                                            >
+                                                                <i class="bi bi-trash-fill"></i>
+                                                            </button>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3" id="trailerVidCont"> 
-                                            <label class="form-label">
-                                                Course Trailer Video(optional)
-                                                <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Maximum size allowed 1GB"></i>
-                                            </label> 
-                                            <div class="row">
-                                                <div class="col-sm-12 d-sm-flex mb-3">
-                                                    <div class="form-check"> 
-                                                        {!!
-                                                            Form::radio('trailer_storage_type', 'local', null, [
-                                                                "class" => "form-check-input trailer-video-type show-hide-trigger",
-                                                                "data-hide-target" => ".tlVidTypeInputBox",
-                                                                "data-show-target" => "#tlVidTypeLocalInputBox"
-                                                            ]);
-                                                        !!}
-                                                        <label class="form-check-label" for="trailerStorageTypeLocal">
-                                                            Upload Your Own
-                                                        </label>
+                                        <div class="card mb-3" id="trailerVidCont">
+                                            <div class="card-header">
+                                                <label class="form-label">
+                                                    <i class="bi bi-film"></i>
+                                                    <b>Course Trailer Video</b>
+                                                    <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Maximum size allowed 1GB"></i>
+                                                </label> 
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 d-sm-flex mb-3">
+                                                        <div class="form-check"> 
+                                                            {!!
+                                                                Form::radio('trailer_storage_type', 'local', null, [
+                                                                    "class" => "form-check-input trailer-video-type show-hide-trigger",
+                                                                    "data-hide-target" => ".tlVidTypeInputBox",
+                                                                    "data-show-target" => "#tlVidTypeLocalInputBox"
+                                                                ]);
+                                                            !!}
+                                                            <label class="form-check-label" for="trailerStorageTypeLocal">
+                                                                Upload Your Own
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-sm-3"> 
+                                                            {!!
+                                                                Form::radio('trailer_storage_type', 'external_web', null, [
+                                                                    "class" => "form-check-input trailer-video-type show-hide-trigger",
+                                                                    "data-hide-target" => ".tlVidTypeInputBox",
+                                                                    "data-show-target" => "#tlVidTypeExtInputBox"
+                                                                ]);
+                                                            !!}
+                                                            <label class="form-check-label" for="trailerStorageTypeExternal">
+                                                                Link to Vimeo/Youtube Video
+                                                            </label> 
+                                                        </div>
                                                     </div>
-                                                    <div class="form-check ms-sm-3"> 
-                                                        {!!
-                                                            Form::radio('trailer_storage_type', 'external_web', null, [
-                                                                "class" => "form-check-input trailer-video-type show-hide-trigger",
-                                                                "data-hide-target" => ".tlVidTypeInputBox",
-                                                                "data-show-target" => "#tlVidTypeExtInputBox"
-                                                            ]);
-                                                        !!}
-                                                        <label class="form-check-label" for="trailerStorageTypeExternal">
-                                                            Link to Vimeo/Youtube Video
+                                                    <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeLocalInputBox">
+                                                        <input 
+                                                            type="file" 
+                                                            name="trailer" 
+                                                            class="form-control"
+                                                        />
+                                                        @error('trailer')
+                                                            <span class="form-text form-error">{{ $message }}</span>
+                                                        @enderror
+                                                        <div class="form-text fw-bold">Maximum file size allowed 1GB, For larger files use Vimeo/Youtube.</div>
+                                                    </div>
+                                                    <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeExtInputBox">
+                                                        {!! Form::text('trailer_ext_link', null, [
+                                                            'class' => 'form-control',
+                                                        ]) !!}
+                                                        @error('trailer_ext_link')
+                                                            <span class="form-text form-error">{{ $message }}</span>
+                                                        @enderror
+                                                        <div class="form-text fw-bold">Youtube/Vimeo link starting with https://</div>
+                                                    </div>
+                                                </div>
+                                                <div class="card my-3">
+                                                    <div class="card-header">
+                                                        <label class="form-label">
+                                                            <b>Trailer Cover Image</b> (optional)
+                                                            <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Maximum size allowed 1MB"></i>
+                                                            <span class="help-text">Only use this option if you have a trailer video added</span>
                                                         </label> 
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeLocalInputBox">
-                                                    <input 
-                                                        type="file" 
-                                                        name="trailer" 
-                                                        class="form-control"
-                                                    />
-                                                    @error('trailer')
-                                                        <span class="form-text form-error">{{ $message }}</span>
-                                                    @enderror
-                                                    <div class="form-text">Maximum file size allowed 1GB, For larger files use Vimeo/Youtube.</div>
-                                                </div>
-                                                <div class="col-sm-12 initial-hide tlVidTypeInputBox" id="tlVidTypeExtInputBox">
-                                                    {!! Form::text('trailer_ext_link', null, [
-                                                        'class' => 'form-control',
-                                                    ]) !!}
-                                                    @error('trailer_ext_link')
-                                                        <span class="form-text form-error">{{ $message }}</span>
-                                                    @enderror
-                                                    <div class="form-text">Youtube/Vimeo link starting with https://</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3"> 
-                                            <label class="form-label">
-                                                Trailer Cover Image(optional)
-                                                <i class="bi bi-question-circle" data-bs-toggle="tooltip" title="Maximum size allowed 1MB"></i>
-                                                <span class="help-text">Only use this option if you have a trailer video added</span>
-                                            </label> 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input 
-                                                        type="file" 
-                                                        name="trailer_cover" 
-                                                        class="form-control"
-                                                        accept="image/*"
-                                                    />
-                                                    @error('trailer_cover')
-                                                        <span class="form-text form-error">{{ $message }}</span>
-                                                    @enderror
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <input 
+                                                                    type="file" 
+                                                                    name="trailer_cover" 
+                                                                    class="form-control"
+                                                                    accept="image/*"
+                                                                />
+                                                                @error('trailer_cover')
+                                                                    <span class="form-text form-error">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                            @if (!empty($course->trailer_cover))
+                                                                <div class="col-md-12 mt-3 media-container">
+                                                                    <img 
+                                                                        src="{{ asset($course->trailer_cover) }}" 
+                                                                        width="150"
+                                                                    />
+                                                                    <button 
+                                                                        type="button"
+                                                                        class="btn btn-sm delete-media-btn btn btn-outline-danger"
+                                                                        data-bs-toggle="tooltip" title="Delete image."
+                                                                        data-post-url="{{ route('courses.delete-media', [
+                                                                            'course' => $course->id,
+                                                                            'mediaField' => 'trailer_cover'
+                                                                        ]) }}"
+                                                                    >
+                                                                        <i class="bi bi-trash-fill"></i>
+                                                                    </button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

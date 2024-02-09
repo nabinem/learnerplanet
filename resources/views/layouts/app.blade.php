@@ -165,8 +165,7 @@
                         <li @class([
                             'nav-item',
                             'menu-open' => request()->routeIs([
-                                'courses.index',
-                                'courses.create'
+                                'courses.*',
                             ])
                         ])>
                             <a href="#" class="nav-link"> 
@@ -187,7 +186,7 @@
                                     <a href="{{ route('courses.index') }}" 
                                         @class([
                                             'nav-link',
-                                            'active' => request()->routeIs('courses.index')
+                                            'active' => request()->routeIs(['courses.index', 'courses.edit'])
                                         ])
                                     > 
                                         <i class="nav-icon bi bi-circle"></i>

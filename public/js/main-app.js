@@ -178,6 +178,22 @@ $(document).ready(function () {
         $($(this).attr('data-hide-target')).hide();
         $($(this).attr('data-show-target')).show();
     })
+    $('.show-hide-trigger:checked').each(function() {
+        $(this).trigger('click');
+    });
+
+    $('.delete-media-btn').click(function(){
+        if (confirm('Are sure sure you want to delete?')){
+            var $this = $(this); 
+            $this.button('loading')
+            $.post($this.attr('data-post-url'), function() {
+                $this.closest('.media-container').hide();
+            })
+            .always(function() {
+                $this.button('reset');
+            });
+        }
+    });
 
 
 });

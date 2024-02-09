@@ -65,7 +65,7 @@
                                                     <a 
                                                         href="#" 
                                                         data-bs-toggle="tooltip"
-                                                        title="Click to Update"
+                                                        title="Click to switch status (Draft/Live)"
                                                         class="btn btn-{{ $course->status == 'live' ? 'success' : 'secondary' }} btn-sm me-2">
                                                         <i class="bi bi-{{ $course->status == 'live' ? 'broadcast' : 'file-earmark-fill' }}"></i>
                                                         {{ ucfirst($course->status) }}
