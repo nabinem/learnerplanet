@@ -246,6 +246,34 @@
                                                         @enderror
                                                         <div class="form-text fw-bold">Youtube/Vimeo link starting with https://</div>
                                                     </div>
+                                                    @if (!empty($video->trailer))
+                                                    {{ $video->trailer }}
+                                                        <div class="row">
+                                                            <div class="col-sm-6 mt-3">
+                                                                hjhjh
+                                                                <video
+                                                                    id="my-player"
+                                                                    class="video-js"
+                                                                    controls
+                                                                    preload="auto"
+                                                                    width="350"
+                                                                    @if ($course->trailer_cover)
+                                                                        poster="{{ asset($course->trailer_cover) }}"
+                                                                    @endif
+                                                                    data-setup='{}'
+                                                                >
+                                                                    <source src="{{ asset($course->trailer) }}"></source>
+                                                                    <p class="vjs-no-js">
+                                                                        To view this video please enable JavaScript, and consider upgrading to a
+                                                                        web browser that
+                                                                        <a href="https://videojs.com/html5-video-support/" target="_blank">
+                                                                        supports HTML5 video
+                                                                        </a>
+                                                                    </p>
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                                 <div class="card my-3">
                                                     <div class="card-header">

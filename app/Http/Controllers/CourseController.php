@@ -80,7 +80,7 @@ class CourseController extends Controller
 		$course ??= new Course;
 
 		$course->fill($request->except([
-			'thumbnail', 'trailer_cover', 'trailer'
+			'thumbnail', 'trailer_cover', 'trailer', 'trailer_ext_link'
 		]));
 
 		//upload course related images
@@ -107,10 +107,9 @@ class CourseController extends Controller
 				$course->trailer = $filePath;
 			}
 		} else {
-			$course->trailer =  $request->input('trailer');
+			$course->trailer =  $request->input('trailer_ext_link');
 		}
 		
-
 		$course->user_id = auth()->id();
 
 		return $course->save();
