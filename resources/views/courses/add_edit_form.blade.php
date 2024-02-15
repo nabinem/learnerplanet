@@ -1,4 +1,9 @@
 <x-app-layout>
+    
+    @push('pluginCss')
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    @endpush
+
     <div class="app-content-header">
         <div class="container-fluid">
             <div class="row">
@@ -246,11 +251,16 @@
                                                         @enderror
                                                         <div class="form-text fw-bold">Youtube/Vimeo link starting with https://</div>
                                                     </div>
-                                                    @if (!empty($video->trailer))
-                                                    {{ $video->trailer }}
+
+                                                    <div class="row">
+                                                        <div class="col-sm-10 mt-3 border py-4">
+                                                            <h5>HLS STREAMING VIDEOS TEST<hr/> </h5>
+                                                            <video id="hlsPlayer" width="100%" class="" controls></video>
+                                                        </div>
+                                                    </div>
+                                                    @if (!empty($course->trailer))
                                                         <div class="row">
                                                             <div class="col-sm-6 mt-3">
-                                                                hjhjh
                                                                 <video
                                                                     id="my-player"
                                                                     class="video-js"
@@ -356,6 +366,11 @@
         </div>
     </div>
 
+    @push('pluginScripts')
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    @endpush
+
     @push('scripts')
         <script type="text/javascript">
             $(document).ready(function(){
@@ -391,6 +406,60 @@
                         $(form).find("[type='submit']").button('loading');
                     }
                 });
+
+                var video = document.getElementById('hlsPlayer');
+
+                if(Hls.isSupported()) {
+                    var hls = new Hls();
+                    hls.loadSource('http://learnerplanet.local/HLS_SAMPLE_VIDEOS/HLS/sample.m3u8');
+                    hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+                        //video.play();
+                        const availableQualitites = hls.levels.map(i => i.height);
+                        const defaultOptions = {};
+                        defaultOptions.controls = [
+                            'play-large', // The large play button in the center
+                            'restart', // Restart playback
+                            'rewind', // Rewind by the seek time (default 10 seconds)
+                            'play', // Play/pause playback
+                            'fast-forward', // Fast forward by the seek time (default 10 seconds)
+                            'progress', // The progress bar and scrubber for playback and buffering
+                            'current-time', // The current time of playback
+                            'duration', // The full duration of the media
+                            'mute', // Toggle mute
+                            'volume', // Volume control
+                            'captions', // Toggle captions
+                            'settings', // Settings menu
+                            'pip', // Picture-in-picture (currently Safari only)
+                            'airplay', // Airplay (currently Safari only)
+                            'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
+                            'fullscreen', // Toggle fullscreen
+                        ];
+                        defaultOptions.quality = {
+                            default: 720,//availableQualitites[0],
+                            options: availableQualitites,
+                            forced: true,
+                            onChange: (e) => updateQuality(e)
+                        };
+                        new Plyr(video, defaultOptions);
+                    });
+                    hls.attachMedia(video);
+                    window.hls = hls;
+                } else {
+                    //play mp3 video
+                }
+
+                function updateQuality(newQuality){
+                    window.hls.levels.forEach((level, levelIndex) => {
+                        if (level.height == newQuality){
+                            window.hls.currentLevel = levelIndex;
+                        }
+                    });
+                }
+
+                //http://learnerplanet.local/HLS_SAMPLE_VIDEOS/HLS/sample.m3u8
+                //http://learnerplanet.local/HLS_SAMPLE_VIDEOS/HLS/480_out.m3u8
+                     
+
             });
         </script>
     @endpush
