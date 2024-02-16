@@ -256,14 +256,17 @@
 
                                                     <div class="row">
                                                         <div class="col-sm-10 mt-3 border py-4">
-                                                            <h5>HLS STREAMING VIDEOS(Plyr.io Hls.js Implementation)<hr/> </h5>
+                                                            <h5>HLS STREAMING VIDEOS(Plyr.io Hls.js Implementation) playing from .m3u8 
+                                                                <a href="https://www.youtube.com/watch?v=aGHCyzVqfrQ" target="_blank">https://www.youtube.com/watch?v=aGHCyzVqfrQ</a>
+                                                                <hr/> 
+                                                            </h5>
                                                             <video id="hlsPlayer" width="100%" class="" controls></video>
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-sm-10 mt-3 border py-4">
-                                                            <h5>VIDEO.JS plugin: @silvermine/videojs-quality-selector <hr/> </h5>
+                                                            <h5>VIDEO.JS plugin: @silvermine/videojs-quality-selector (list of 1080p/720p.mp4 files) <hr/> </h5>
                                                             <video id="videoJsQualitySelectorDemo" class="video-js vjs-default-skin" style="width: 854px; height: 480px;" controls>
                                                                 <source src="http://learnerplanet.local/VIDEOS_TEST/RESOLUTIONS/sample_1080p.mp4" label="1080p">
                                                                 <source src="http://learnerplanet.local/VIDEOS_TEST/RESOLUTIONS/sample_720p.mp4" label="720p">
