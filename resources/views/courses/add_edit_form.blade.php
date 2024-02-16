@@ -288,7 +288,7 @@
 
                                                     <div class="row">
                                                         <div class="col-sm-10 mt-3 border py-4">
-                                                            <h5>VIDEO.JS plugin: jb-videojs-hls-quality-selector plugin <hr/> </h5>
+                                                            <h5>VIDEO.JS plugin: jb-videojs-hls-quality-selector plugin (similar to above plyr.io/hls.js implementation which may be better)<hr/> </h5>
                                                             <video id="jbHlsQtSelectorPlayer" class="video-js vjs-default-skin" style="width: 854px; height: 480px;" controls>
                                                                 <source src="http://learnerplanet.local/VIDEOS_TEST/HLS/sample.m3u8">
                                                             </video>
