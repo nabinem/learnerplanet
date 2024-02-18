@@ -290,7 +290,23 @@
                                                         <div class="col-sm-10 mt-3 border py-4">
                                                             <h5>VIDEO.JS plugin: jb-videojs-hls-quality-selector plugin (similar to above plyr.io/hls.js implementation which may be better)<hr/> </h5>
                                                             <video id="jbHlsQtSelectorPlayer" class="video-js vjs-default-skin" style="width: 854px; height: 480px;" controls>
-                                                                <source src="http://learnerplanet.local/VIDEOS_TEST/HLS/sample.m3u8">
+                                                                <!--<source src="http://learnerplanet.local/VIDEOS_TEST/HLS/sample.m3u8">-->
+                                                                <source src="https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8">
+                                                            </video>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-10 mt-3 border py-4">
+                                                            <h5>VIDEO.JS m3u8 file without any plugin: you can see no quality selector<hr/> </h5>
+                                                            <video 
+                                                                class="video-js vjs-default-skin"
+                                                                data-setup="{}"
+                                                                style="width: 854px; height: 480px;" controls>
+                                                                <source 
+                                                                    src="https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8" 
+                                                                    type="application/x-mpegURL"
+                                                                >
                                                             </video>
                                                         </div>
                                                     </div>
