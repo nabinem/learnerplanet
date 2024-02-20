@@ -1,9 +1,0 @@
-.video-js {
-  &.vjs-hls-quality-selector {
-    display: block;
-  }
-}
-
-.hls-quality-button {
-  padding: 0;
-}
