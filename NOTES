@@ -1,1 +1,31 @@
+AWS console user: yakthumba.nabin@gmail.com
+http://16.16.186.92/
 ssh -i aws.pem ubuntu@16.16.186.92
+ssh user learnerplanet pw: learnerplanet29681
+
+sudo nano /etc/php/8.2/fpm/pool.d/www.conf
+
+sudo service nginx reload
+sudo service php8.2-fpm restart
+
+sudo nano /etc/nginx/sites-available/learnerplanet
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    root /home/learnerplanet/www/public;
+
+    index index.html index.htm index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    }
+}
