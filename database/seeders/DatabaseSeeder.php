@@ -13,17 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->command->info("---------Creating Default Admin User---------\n");
+        $email = 'admin@learnerplanet.com';
+        $password = 'admin@lp0923';
+
+        $this->command->info("------ Creating Default Admin User: {$email} {$password} \n");
 
         \App\Models\User::firstOrCreate(
             [
-                'email' =>  'admin@learnerplanet.com',
+                'email' =>  $email,
             ],
             [
                 'first_name' => 'Admin',
                 'last_name' => 'Admin',
-                'email' => 'admin@learnerplanet.com',
-                'password' => Hash::make('admin@lp0923'),
+                'email' => $email,
+                'password' => Hash::make($password),
                 'role' => 'admin'
             ]
         );
