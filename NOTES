@@ -1,7 +1,11 @@
 AWS console user: yakthumba.nabin@gmail.com
 http://16.16.186.92/
-ssh -i aws.pem ubuntu@16.16.186.92
+ssh -i storage/aws.pem ubuntu@16.16.186.92
+ssh -i storage/aws.key learnerplanet@16.16.186.92
 ssh user learnerplanet pw: learnerplanet29681
+mysql pass root@localhost learnerplanet81296
+mysql pass learnerplanet@localhost learnerplanet29618
+
 
 sudo nano /etc/php/8.2/fpm/pool.d/www.conf
 
