@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
@@ -53,6 +54,7 @@
                     </li> 
                     <!--end::Notifications Dropdown Menu-->
                     <!--begin::User Menu Dropdown-->
+                   
                     <li class="nav-item dropdown user-menu"> 
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> 
                             <i class="bi bi-person-fill"></i>
@@ -136,6 +138,7 @@
                             <!--end::Menu Footer-->
                         </ul>
                     </li> <!--end::User Menu Dropdown-->
+                   
                 </ul> <!--end::End Navbar Links-->
             </div> <!--end::Container-->
         </nav> <!--end::Header--> 
@@ -299,5 +302,6 @@
         </script>
 
     </body>
+   
 </html>
 

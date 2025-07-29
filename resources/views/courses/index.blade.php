@@ -89,14 +89,25 @@
                                                     {{ $course->short_desc }}
                                                 </p>
                                                 <hr class="my-2 mx--1"/>
+                                                @if(auth()->user()->can('edit courses') || auth()->user()->can('delete courses'))
                                                 <div>
+                                                    @can('edit courses')
                                                     <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-outline-primary btn-sm me-2">
                                                         <i class="bi bi-pencil-fill"></i> Edit
                                                     </a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm me-2">
-                                                        <i class="bi bi-trash-fill"></i> Delete
-                                                    </a>
+                                                    @endcan
+                                                   @can('delete courses')
+<form action="{{ route('courses.destroy', $course->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this course?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-outline-danger btn-sm me-2">
+        <i class="bi bi-trash-fill"></i> Delete
+    </button>
+</form>
+@endcan
+
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

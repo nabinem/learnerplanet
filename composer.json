@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.8",
         "laravelcollective/html": "^6.4",
         "minuteoflaravel/laravel-audio-video-validator": "^1.1",
-        "php-ffmpeg/php-ffmpeg": "*"
+        "php-ffmpeg/php-ffmpeg": "*",
+        "spatie/laravel-permission": "^6.21"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

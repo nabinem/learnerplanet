@@ -1,3 +1,5 @@
+
+
 <x-app-layout>
     <div class="app-content-header">
         <div class="container-fluid">
@@ -25,12 +27,14 @@
                                 <h3 class="card-title">
                                     <strong>My Courses</strong>
                                 </h3>
+                                @role('teacher')
                                 <div class="">
                                     <a href="{{ route('courses.create') }}" class="btn btn-primary btn-sm">
                                         <i class="bi bi-plus"></i>
                                         Create A New Course
                                     </a>
                                 </div>
+                                 @endrole
                             </div>
                         </div>
                         <div class="card-body">

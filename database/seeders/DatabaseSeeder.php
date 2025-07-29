@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
                 'role' => 'admin'
             ]
         );
+        
+        $this->call([
+            PermissionsSeeder::class,
+            RolesSeeder::class,
+            CategorySeeder::class,
+        ]);
 
         // \App\Models\User::factory(10)->create();
 
