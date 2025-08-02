@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\playlist;
-use Illuminate\Database\Connectors\Connector;
 use Illuminate\Http\Request;
 
-class PlaylistController extends Connector
+class PlaylistController extends Controller
 {
     /**
      * Display a listing of the resource.
