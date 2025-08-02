@@ -34,7 +34,6 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'role' => ['required', 'in:buyer,teacher'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -42,12 +41,11 @@ class RegisteredUserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
-       $user->assignRole($request['role']); // This links it in model_has_roles table
+       $user->assignRole('user'); // This links it in model_has_roles table
 
         Auth::login($user);
 

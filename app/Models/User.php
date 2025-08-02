@@ -61,4 +61,19 @@ class User extends Authenticatable
         );
     }
 
+       public function courses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withTimestamps()
+            ->withPivot('is_complete', 'enrolled_at');
+    }
+
+    // Videos the user has watched (pivot includes progress)
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class, 'user_video')
+            ->withTimestamps()
+            ->withPivot('is_watched', 'watched_at', 'watch_duration');
+    }
+
 }

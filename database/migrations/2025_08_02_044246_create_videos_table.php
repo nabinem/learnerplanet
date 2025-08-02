@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
+            $table->foreignId('playlist_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('status', ['draft', 'live'])->default('draft');
+            $table->boolean('is_free')->default(false);
+            $table->string('video_url');
+            $table->unsignedInteger('order')->default(0);
+
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('videos');
     }
 };

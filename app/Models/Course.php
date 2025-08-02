@@ -25,6 +25,16 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+        public function playlist()
+    {
+        return $this->hasMany(Playlist::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot('is_complete', 'enrolled_at')
+            ->withTimestamps();
+    }
 
     public function canUserAccess($user = null)
     {

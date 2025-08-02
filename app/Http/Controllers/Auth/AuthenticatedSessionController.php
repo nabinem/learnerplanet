@@ -15,8 +15,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if(auth()->user()){
+            if(auth()->user()->hasRole('admin')){
+                return redirect()->route('adminDashboard');
+            }else{
+                return redirect()->route('dashboard');
+            }
+        }
         return view('auth.login');
     }
 
@@ -29,7 +36,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = auth()->user();
+        if ($user->hasRole('admin')) {
+            return redirect()->route('adminDashboard');
+        } else {
+            return redirect()->route('dashboard');
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**

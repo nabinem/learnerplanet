@@ -66,23 +66,6 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Register As</label>
-                <div class="d-flex gap-4">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="roleStudent" value="buyer" checked>
-                        <label class="form-check-label" for="roleStudent">
-                            User
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="role" id="roleTeacher" value="teacher">
-                        <label class="form-check-label" for="roleTeacher">
-                            Teacher
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3">
                 <div class="input-group">
                     <div class="form-floating">
                         <input

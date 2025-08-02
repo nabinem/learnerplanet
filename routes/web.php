@@ -28,6 +28,12 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return view('adminDashboard');
+        })->name('adminDashboard');
+    });
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -38,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
-    
+
 
     Route::get('demo', 'DashboardController@demo');
 });

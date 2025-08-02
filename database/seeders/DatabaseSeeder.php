@@ -13,23 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $email = 'admin@learnerplanet.com';
-        $password = 'admin@lp0923';
-
-        $this->command->info("------ Creating Default Admin User: {$email} {$password} \n");
-
-        \App\Models\User::firstOrCreate(
-            [
-                'email' =>  $email,
-            ],
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Admin',
-                'email' => $email,
-                'password' => Hash::make($password),
-                'role' => 'admin'
-            ]
-        );
         
         $this->call([
             PermissionsSeeder::class,
