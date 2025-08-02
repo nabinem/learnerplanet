@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Course;
 
 use App\Models\playlist;
+use Illuminate\Database\Connectors\Connector;
 use Illuminate\Http\Request;
 
-class PlaylistController extends Controller
+class PlaylistController extends Connector
 {
     /**
      * Display a listing of the resource.
