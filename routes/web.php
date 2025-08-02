@@ -19,21 +19,24 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('courses', CourseController::class);
 
+Route::middleware('auth')->group(function () {
+   
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+    Route::patch('/courses/{course}', [CourseController::class, 'update']); // optional, to support PATCH too
+    Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
     Route::post('courses/delete-media/{course}/{mediaField}', [CourseController::class, 'deleteMedia'])
         ->name('courses.delete-media');
-
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
-
-
-    Route::get('demo', 'DashboardController@demo');
+     Route::get('demo', 'DashboardController@demo');
 });
 
 Route::get('/dashboard', function () {
