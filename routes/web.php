@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Course\CourseController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,19 +20,11 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('courses', 'CourseController');
-    Route::post('courses/delete-media/{course}/{mediaField}', 'CourseController@deleteMedia')
+    Route::resource('courses', CourseController::class);
+
+    Route::post('courses/delete-media/{course}/{mediaField}', [CourseController::class, 'deleteMedia'])
         ->name('courses.delete-media');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::middleware(['auth', 'role:admin'])->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('adminDashboard');
-        })->name('adminDashboard');
-    });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -40,13 +32,19 @@ Route::middleware('auth')->group(function () {
 
     // Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
-    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
-    Route::put('/courses/{course}/update', [CourseController::class, 'update'])->name('courses.update');
-    Route::delete('/courses/{course}/delete', [CourseController::class, 'destroy'])->name('courses.destroy');
-
-
 
     Route::get('demo', 'DashboardController@demo');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('adminDashboard');
+    })->name('adminDashboard');
+});
+
 
 require __DIR__ . '/auth.php';

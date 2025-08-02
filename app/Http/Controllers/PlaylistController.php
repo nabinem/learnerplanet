@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Course;
+namespace App\Http\Controllers;
 
 use App\Models\playlist;
 use Illuminate\Database\Connectors\Connector;
