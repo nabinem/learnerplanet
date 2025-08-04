@@ -25,7 +25,7 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
-        public function playlist()
+    public function playlist()
     {
         return $this->hasMany(Playlist::class);
     }
@@ -43,8 +43,7 @@ class Course extends Model
         if ($user->role === 'admin') return true;
 
         if ($this->user_id == $user->id) return true;
-        
+
         return false;
     }
-
 }

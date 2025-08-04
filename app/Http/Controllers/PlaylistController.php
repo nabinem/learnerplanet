@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\playlist;
+use App\Models\Course;
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -18,17 +19,36 @@ class PlaylistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($courseId)
     {
-        //
+        $course = Course::with('playlist')->findOrFail($courseId);
+        $nextOrder = $course->playlist->count() + 1;
+
+        return view('courses.playlist', compact('nextOrder', 'course'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        //
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'order' => 'required|integer',
+        ]);
+
+        Playlist::create([
+            'course_id' => $course->id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'order' => $request->order,
+        ]);
+
+        return back()->with('success', 'Playlist created!');
+
     }
 
     /**

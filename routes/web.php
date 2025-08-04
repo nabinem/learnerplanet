@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +50,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return view('adminDashboard');
     })->name('adminDashboard');
 });
+
+//playlist/module
+Route::get('/courses/{course}/module/create', [PlaylistController::class, 'create'])->name('playlist.create');
+Route::post('/courses/{course}/module', [PlaylistController::class, 'store'])->name('playlist.store');
+
+
+
+//session/videos
+Route::get('/sessions', [VideosController::class, 'create'])->name('videos.create');
 
 
 require __DIR__ . '/auth.php';

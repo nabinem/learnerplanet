@@ -70,10 +70,10 @@
                                                         <i class="bi bi-{{ $course->status == 'live' ? 'broadcast' : 'file-earmark-fill' }}"></i>
                                                         {{ ucfirst($course->status) }}
                                                     </a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                                    <a href="{{route('playlist.create', $course->id)}}" class="btn btn-outline-secondary btn-sm me-2">
                                                         Modules <span class="badge bg-secondary">4</span>
                                                     </a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
+                                                    <a href="{{route('videos.create', $course->id)}}" class="btn btn-outline-secondary btn-sm me-2">
                                                         Sessions <span class="badge bg-secondary">5</span>
                                                     </a>
                                                     <a href="#" class="btn btn-outline-secondary btn-sm me-2">

@@ -1,6 +1,5 @@
-
-
 <x-app-layout>
+    <x-card />
     <div class="app-content-header">
         <div class="container-fluid">
             <div class="row">
